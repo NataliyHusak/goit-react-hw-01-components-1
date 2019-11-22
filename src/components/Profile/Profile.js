@@ -32,17 +32,7 @@ const Profile = ({ user }) => (
 );
 
 Profile.defaultProps = {
-  user: PropTypes.shape({
-    name: '',
-    tag: '',
-    location: '',
-    avatar: '',
-    stats: PropTypes.shape({
-      followers: 0,
-      views: 0,
-      likes: 0,
-    }),
-  }),
+  user: {},
 };
 
 Profile.propTypes = {
