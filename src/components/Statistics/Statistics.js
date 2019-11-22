@@ -12,12 +12,6 @@ function randomBgColor() {
   return bgColor;
 }
 
-const styles = {
-  bgColor: {
-    backgroundColor: `${randomBgColor()}`,
-  },
-};
-
 const Statistics = ({ title, stats }) => (
   <div className={s.bg}>
     <section className={s.statistics}>
@@ -26,7 +20,11 @@ const Statistics = ({ title, stats }) => (
       <ul className={s.statList}>
         {stats.length > 0 &&
           stats.map(el => (
-            <li key={el.id} className={s.item} style={styles.bgColor}>
+            <li
+              key={el.id}
+              className={s.item}
+              style={{ backgroundColor: `${randomBgColor()}` }}
+            >
               <span className={s.label}>{el.label}</span>
               <span className={s.percentage}>{el.percentage}%</span>
             </li>
@@ -38,20 +36,18 @@ const Statistics = ({ title, stats }) => (
 
 Statistics.defaultProps = {
   title: '',
-  stats: PropTypes.shape({
-    id: '',
-    label: '',
-    percentage: 0,
-  }),
+  stats: [],
 };
 
 Statistics.propType = {
   title: PropTypes.string,
-  stats: PropTypes.shape({
-    id: PropTypes.string,
-    label: PropTypes.string,
-    percentage: PropTypes.number,
-  }),
+  stats: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      label: PropTypes.string,
+      percentage: PropTypes.number,
+    }),
+  ),
 };
 
 export default Statistics;
